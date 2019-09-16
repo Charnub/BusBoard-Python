@@ -44,9 +44,9 @@ class Bus:
         self.dep_time = dep_time
 
     def __str__(self):
-        return f"""
-        Bus Stop: {self.stop_name}
-        Bus No: {self.line_name} towards {self.direction}
-        Expected at: {self.dep_time}
-"""
-        #return self.stop_name + " - Bus No: " + self.line_name + ' towards ' + self.direction + ' expected at ' + self.dep_time
+        return self.stop_name + " - Bus No: " + self.line_name + ' towards ' + self.direction + ' expected at ' + self.dep_time
+#         return f"""
+#         Bus Stop: {self.stop_name}
+#         Bus No: {self.line_name} towards {self.direction}
+#         Expected at: {self.dep_time}
+# """
