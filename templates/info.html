@@ -5,6 +5,27 @@
     <h2>Bus Information</h2>
     <div>
         <p>You entered postcode <span>{{ postcode }}</span></p>
+        <p>Your nearest bus stop is <span>{{ stop }}</span></p>
+
+
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Bus Number</th>
+                <th scope="col">Direction</th>
+                <th scope="col">Estimated Departure Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in bus %}
+            <tr>
+                <th scope="row">{{ bus }}</th>
+                <th>{{ direction }}</th>
+                <th>{{ departure }}</th>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 {% endblock %}
