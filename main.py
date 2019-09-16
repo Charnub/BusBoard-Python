@@ -1,12 +1,12 @@
-# import json
-# import requests
 from transportQuery import BusQuery
 from transportQuery import PostcodeQuery
 from transportQuery import BusStopQuery
+from BusStop import BusStop
 from JSONParse import JSONText
 def main():
     postcode_endpoint = 'https://api.postcodes.io/postcodes/'
     postcode = str(input("Enter your postcode: "))
+    # postcode = "BA1 1AN"
     postcodeQuery = PostcodeQuery(postcode_endpoint, postcode)
     postcode_response = postcodeQuery.Request()
     postcode_dict = JSONText(postcode_response.text).dict['result']
@@ -18,12 +18,26 @@ def main():
     bus_stop_query = BusStopQuery(bus_stop_url, post_long, post_lat)
     bus_stop_response = bus_stop_query.Request()
     bus_stop_dicts = JSONText(bus_stop_response.text).dict['member'] # list of dicts
-    atcocodes = []
-    for i in range(0,len(bus_stop_dicts)):
-        dict = bus_stop_dicts[i]
-        atcocodes.append((dict['name'], dict['atcocode'], dict['distance']))
-    print(atcocodes)
-    # chooseBus = input("Please enter a bus code: ")
+    # print(bus_stop_dicts)
+
+    bus_api_url = 'https://transportapi.com/v3/uk/bus/stop/'
+
+    list_bus_stops = BusStop.GetStops(bus_stop_dicts)
+    print('Nearest bus stop')
+    list_bus_stops[0].GetBuses(bus_api_url)
+    list_bus_stops[0].PrintBuses()
+    print('2nd Nearest bus stop')
+    list_bus_stops[1].GetBuses(bus_api_url)
+    list_bus_stops[1].PrintBuses()
+    # print(list_bus_stops[0].buses)
+    # bus_info = list_bus_stops[0].GetBuses(bus_api_url)
+    # print(bus_info)
+    # for stop in list_bus_stops:
+    #     print(stop)
+
+
+
+    # chooseBus
     # api_url = 'https://transportapi.com/v3/uk/bus/stop/'
     #
     # query = BusQuery(chooseBus, api_url)
