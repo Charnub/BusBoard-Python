@@ -1,4 +1,3 @@
-from transportQuery import BusQuery
 from transportQuery import PostcodeQuery
 from transportQuery import BusStopQuery
 from BusStop import BusStop
