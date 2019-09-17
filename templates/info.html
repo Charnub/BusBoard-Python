@@ -4,7 +4,9 @@
 <div class="container body-content">
     <h2>Bus Information</h2>
     <div>
-        <p>You entered postcode <span>{{ postcode }}</span></p>
+        <h4 style="text-align: center">You entered postcode <span>{{ postcode }}</span></h4>
+        <h4 style="text-align: center">Current Weather for <span>{{ postcode }}</span>: <img src="http://openweathermap.org/img/wn/10d.png"></h4>
+    </div>
 
         {% for stop in stops %}
         <h3 style="text-align: center"><u>Bus Stop: <span>{{ stop.name }}</span></u></h3>
