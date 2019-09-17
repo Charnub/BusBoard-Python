@@ -1,4 +1,5 @@
 import requests
+from JSONParse import JSONText
 
 class BusQuery:
     def __init__(self, chooseBus, api_url, limit = 5, next_buses = "no"):
@@ -36,3 +37,29 @@ class PostcodeQuery:
 
     def Request(self):
         return requests.get(self.postcode_endpoint + self.postcode)
+
+    @staticmethod
+    def GetPostcodeInfo(postcode, postcode_endpoint):
+        postcodeQuery = PostcodeQuery(postcode_endpoint, postcode)
+        postcode_response = postcodeQuery.Request()
+        postcode_dict = JSONText(postcode_response.text).dict['result']
+
+        return postcode_dict
+
+
+
+
+
+
+# class WeatherQuery:
+#     def __init__(self, weather_endpoint, latitude, longitude):
+#         file = open(".weather_config.txt", "r")
+#         weather_secret = file.read()
+#         self.weather_endpoint = weather_endpoint
+#         self.latitude = latitude
+#         self.longitude = longitude
+#         self.api_key = weather_secret
+#         self.queryParameters = '/weather?lat=' + str(self.latitude) + '&lon=' + str(self.longitude) + '&appid=' + self.api_key
+#
+#     def Request(self):
+#         return requests.get(self.weather_endpoint + self.queryParameters)
