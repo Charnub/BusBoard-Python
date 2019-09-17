@@ -14,6 +14,9 @@ def main():
     post_long = postcode_dict['longitude']
     post_lat = postcode_dict['latitude']
 
+    weather_api = "api.openweathermap.org/data/2.5/weather?lat=" + str(post_lat) + "&lon=" + str(post_long) + "&appid=e34b03caaeef821f7d7a0724b32de446"
+    print(weather_api)
+
     list_bus_stops = GetBusStops(post_lat, post_long, stop_endpoint)
 
     PrintInfo(list_bus_stops, bus_endpoint)
