@@ -2,10 +2,25 @@
 {% block title %}Bus Information{% endblock %}
 {% block content %}
 <div class="container body-content">
-    <h2>Bus Information</h2>
+    <h2 style="text-align: center"><u>Bus Information</u></h2>
     <div>
-        <h4 style="text-align: center">You entered postcode <span>{{ postcode }}</span></h4>
-        <h4 style="text-align: center">Current Weather for <span>{{ postcode }}</span>: <img src="http://openweathermap.org/img/wn/10d.png"></h4>
+        <h4 style="text-align: center">Bus Stops Near: <span>{{ postcode }}</span></h4>
+        {% if weather == "Clouds" %}
+            <h4 style="text-align: center">Current Weather for <span>{{ postcode }}</span>: <img src="http://openweathermap.org/img/wn/02d.png"></h4>
+        {% elif weather == "Thunderstorm" %}
+            <h4 style="text-align: center">Current Weather for <span>{{ postcode }}</span>: <img src="http://openweathermap.org/img/wn/11d.png"></h4>
+        {% elif weather == "Drizzle" %}
+            <h4 style="text-align: center">Current Weather for <span>{{ postcode }}</span>: <img src="http://openweathermap.org/img/wn/09d.png"></h4>
+        {% elif weather == "Rain" %}
+            <h4 style="text-align: center">Current Weather for <span>{{ postcode }}</span>: <img src="http://openweathermap.org/img/wn/09d.png"></h4>
+        {% elif weather == "Snow" %}
+            <h4 style="text-align: center">Current Weather for <span>{{ postcode }}</span>: <img src="http://openweathermap.org/img/wn/13d.png"></h4>
+        {% elif weather == "Clear" %}
+            <h4 style="text-align: center">Current Weather for <span>{{ postcode }}</span>: <img src="http://openweathermap.org/img/wn/01d.png"></h4>
+        {% else %}
+            <h4 style="text-align: center">No Weather is Available at this time! Try Again!</h4>
+        {% endif %}
+        <hr>
     </div>
 
         {% for stop in stops %}
@@ -37,5 +52,4 @@
             {% endif %}
         {% endfor %}
     </div>
-</div>
 {% endblock %}
