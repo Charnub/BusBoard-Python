@@ -1,4 +1,4 @@
-from transportQuery import BusQuery
+from transportQuery import BusQuery,BusStopQuery
 from JSONParse import JSONText
 
 
@@ -8,6 +8,17 @@ class BusStop:
         self.name = name
         self.distance = distance
         self.buses = []
+
+    @staticmethod
+    def GetBusStops(post_lat, post_long, stop_endpoint):
+
+        bus_stop_query = BusStopQuery(stop_endpoint, post_long, post_lat)
+        bus_stop_response = bus_stop_query.Request()
+        bus_stop_dicts = JSONText(bus_stop_response.text).dict['member']  # list of dicts
+
+        list_bus_stops = BusStop.GetStops(bus_stop_dicts)
+
+        return list_bus_stops
 
 
     @staticmethod
